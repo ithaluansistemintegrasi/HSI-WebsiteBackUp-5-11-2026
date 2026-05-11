@@ -1,0 +1,1 @@
+ALTER TABLE `ProductItem` MODIFY `linkUrl` VARCHAR(2048) NULL;

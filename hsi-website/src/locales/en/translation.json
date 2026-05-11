@@ -1,0 +1,493 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Our Products",
+    "services": "Services",
+    "sparepart": "Spare Parts",
+    "preowned": "Pre-Owned",
+    "contact": "Contact",
+    "news": "News",
+    "upevent": "Activities",
+
+    "mobile": "Menu",
+
+    "lang": {
+      "id": "Indonesia",
+      "en": "English"
+    },
+    "aria": {
+      "home": "Back to Home",
+      "lang": "Select language"
+    }
+  },
+
+  "footer": {
+    "companyName": "PT Haluan Sistem Integrasi",
+    "address": "Cluster Golden Vienna 1 Block B1 No. 2, Jl. Merpati Kencana, Rawa Buntu, Serpong, South Tangerang, Banten 15318, Indonesia",
+
+    "navTitle": "Navigation",
+
+    "contactTitle": "Contact PT Haluan Sistem Integrasi",
+    "whatsappLabel": "WhatsApp:",
+    "whatsappValue": "+62 895-0805-4752",
+    "emailLabel": "Email:",
+    "emailValue": "info@haluansistemintegrasi.com",
+    "hoursLabel": "Business Hours:",
+    "hoursValue": "Mon–Fri 09:00–17:00",
+
+    "cta": "Contact Us",
+    "copyright": "© 2025 PT Haluan Sistem Integrasi. All Rights Reserved."
+  },
+  "common": {
+    "back": "Back"
+  },
+  "home": {
+    "hero": {
+      "imageAlt": "HSI Hero",
+      "title": "Leading Processing Technology",
+      "subtitle": "PT Haluan Sistem Integrasi"
+    },
+    "about": {
+      "title": "About Us",
+      "imageAlt": "About Us",
+      "desc": "PT Haluan Sistem Integrasi has been active in the processing industry since 2007. Though still relatively young, our company has successfully built a broad business network across Indonesia, Singapore, Thailand, Malaysia, and the Philippines throughout Southeast Asia. We are dedicated to supplying, installing, and maintaining a wide range of high-quality equipment and accessories from expert and well-known manufacturers in the processing industry.",
+      "more": "See More"
+    },
+    "products": {
+      "title": "Our Products",
+      "items": {
+        "process": "Processing Machines",
+        "packaging": "Packaging Machines",
+        "sparepart": "Spare Parts"
+      }
+    },
+    "services": {
+      "title": "Services We Offer",
+      "imageAlt": "Services",
+      "items": {
+        "0": "Installation & Commissioning\n We handle machine installation, start-up, and commissioning to ensure every system is set up correctly and performs reliably from day one.",
+        "1": "Maintenance & Troubleshooting\n Our technicians provide preventive maintenance, diagnostics, and repair support to minimize downtime and keep your equipment running efficiently.",
+        "2": "Operator Training & Technical Support\n We offer hands-on operator training and ongoing technical guidance so your team can use every machine safely, confidently, and effectively."
+      }
+    },
+    "preowned": {
+      "title": "Pre-owned",
+      "imageAlt": "Pre-owned",
+      "desc": "Industrial processing machines are a major investment that should be carefully considered before making a decision. This is especially true for businesses looking to start operations, where processing machinery is often one of the most critical investments. Fundamental considerations are needed before allocating funds, particularly for companies preparing to begin industrial operations.\n\nPT HALUAN SISTEM INTEGRASI provides a solution for those who want to stay within budget without compromising production quality. We offer PRE-OWNED machines.\n\nWhy buy from HSI?\nThe machines we offer can be verified for authenticity by providing certification.\nWell-maintained pre-owned machines with excellent quality are an alternative option because they do not require significant time and cost.\n\n- Certified & high-quality machines\n- Fast delivery\n- Economical price"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "submit": "Send",
+      "alertValidated": "Message validated successfully! (not sent to the server yet)",
+      "mapTitle": "PT Haluan Sistem Integrasi",
+      "cardTitle": "PT HALUAN SISTEM INTEGRASI",
+      "cardAddress": "Cluster Golden Vienna 1 Block B1 No. 2, Jl. Merpati Kencana, Rawa Buntu, Serpong, South Tangerang, Banten 15318, Indonesia",
+      "cardPhone": "+62 895-0805-4752",
+      "form": {
+        "name": {
+          "label": "Name",
+          "placeholder": "",
+          "error": "Name is required."
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "",
+          "error": "Invalid email address."
+        },
+        "phone": {
+          "label": "Phone",
+          "placeholder": "",
+          "error": "Phone is required (min. 8 digits)."
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "",
+          "error": "Message is required."
+        }
+      },
+      "success": {
+        "title": "Message sent successfully",
+        "desc": "Thanks for contacting us. Our team will get back to you shortly."
+      }
+    }
+  },
+  "packaging": {
+    "title": "Packaging Machines",
+    "categorySelectAria": "Select category",
+    "bgNotSet": "Background image is not set yet.",
+    "clickForDetail": "Click to view details",
+    "productionLineTitle": "{{category}} Production Line",
+    "close": "Close",
+    "lineAlt": "{{category}} production line",
+    "hotspotAria": "Open details for {{title}}",
+
+    "categories": [
+      { "key": "dryWetFineMilling", "label": "Dry, Wet & Fine Milling" },
+      { "key": "mixingGranulation", "label": "Mixing and Granulation" },
+      { "key": "packingFilling", "label": "Packing & Filling" }
+    ],
+
+    "productsByCategory": {
+      "dryWetFineMilling": [
+        {
+          "id": "micronizer-jet-mill",
+          "title": "Micronizer Jet Mill",
+          "desc": "Jet mill machine for high-precision particle size reduction.",
+          "image": "https://via.placeholder.com/800x600.png?text=Micronizer+Jet+Mill"
+        },
+        {
+          "id": "hammer-mill",
+          "title": "Hammer Mill",
+          "desc": "Hammer mill machine for crushing and size reduction of materials.",
+          "image": "https://via.placeholder.com/800x600.png?text=Hammer+Mill"
+        },
+        {
+          "id": "pin-mill",
+          "title": "Pin Mill",
+          "desc": "Pin mill machine designed for fine grinding applications.",
+          "image": "https://via.placeholder.com/800x600.png?text=Pin+Mill"
+        }
+      ],
+      "mixingGranulation": [
+        {
+          "id": "ribbon-mixer",
+          "title": "Ribbon Mixer",
+          "desc": "Horizontal mixer for consistent and uniform blending.",
+          "image": "https://via.placeholder.com/800x600.png?text=Ribbon+Mixer"
+        },
+        {
+          "id": "high-shear-mixer",
+          "title": "High Shear Mixer",
+          "desc": "High shear mixer for fast and efficient granulation.",
+          "image": "https://via.placeholder.com/800x600.png?text=High+Shear+Mixer"
+        },
+        {
+          "id": "granulator",
+          "title": "Granulator",
+          "desc": "Granulator for producing controlled and consistent granules.",
+          "image": "https://via.placeholder.com/800x600.png?text=Granulator"
+        }
+      ],
+      "packingFilling": [
+        {
+          "id": "labeling",
+          "title": "Labeling Machine",
+          "desc": "Apply labels to products before inspection."
+        },
+        {
+          "id": "inspection",
+          "title": "Inspection Machine",
+          "desc": "Quality inspection for labels/defects before cartoning."
+        },
+        {
+          "id": "cartoning",
+          "title": "Cartoning Machine",
+          "desc": "Automatic carton packaging process."
+        },
+        {
+          "id": "vffs",
+          "title": "VFFS Packing",
+          "desc": "Vertical form-fill-seal packaging machine.",
+          "image": "https://via.placeholder.com/800x600.png?text=VFFS+Packing"
+        },
+        {
+          "id": "multihead",
+          "title": "Multihead Weigher",
+          "desc": "Multihead weighing system for accurate dosing.",
+          "image": "https://via.placeholder.com/800x600.png?text=Multihead+Weigher"
+        },
+        {
+          "id": "filling",
+          "title": "Filling Machine",
+          "desc": "Filling machine for liquids or powders.",
+          "image": "https://via.placeholder.com/800x600.png?text=Filling+Machine"
+        }
+      ]
+    }
+  },
+  "process": {
+    "title": "Processing Machines",
+    "categorySelectAria": "Select category",
+    "bgNotSet": "Background image is not set yet.",
+    "clickForDetail": "Click to view details",
+    "productionLineTitle": "{{category}} Production Line",
+
+    "close": "Close",
+    "lineAlt": "{{category}} production line",
+    "hotspotAria": "Open details for {{title}}",
+
+    "categories": [
+      { "key": "dryWetFineMilling", "label": "Dry, Wet & Fine Milling" },
+      { "key": "mixingGranulation", "label": "Mixing and Granulation" },
+      { "key": "packingFilling", "label": "Packing & Filling" }
+    ],
+
+    "productsByCategory": {
+      "dryWetFineMilling": [
+        {
+          "id": "micronizer-jet-mill",
+          "title": "Micronizer Jet Mill",
+          "desc": "Jet mill machine for high-precision particle size reduction.",
+          "image": "https://via.placeholder.com/800x600.png?text=Micronizer+Jet+Mill"
+        },
+        {
+          "id": "hammer-mill",
+          "title": "Hammer Mill",
+          "desc": "Hammer mill machine for crushing and size reduction of materials.",
+          "image": "https://via.placeholder.com/800x600.png?text=Hammer+Mill"
+        },
+        {
+          "id": "pin-mill",
+          "title": "Pin Mill",
+          "desc": "Pin mill machine designed for fine grinding applications.",
+          "image": "https://via.placeholder.com/800x600.png?text=Pin+Mill"
+        }
+      ],
+      "mixingGranulation": [
+        {
+          "id": "ribbon-mixer",
+          "title": "Ribbon Mixer",
+          "desc": "Horizontal mixer for consistent and uniform blending.",
+          "image": "https://via.placeholder.com/800x600.png?text=Ribbon+Mixer"
+        },
+        {
+          "id": "high-shear-mixer",
+          "title": "High Shear Mixer",
+          "desc": "High shear mixer for fast and efficient granulation.",
+          "image": "https://via.placeholder.com/800x600.png?text=High+Shear+Mixer"
+        },
+        {
+          "id": "granulator",
+          "title": "Granulator",
+          "desc": "Granulator for producing controlled and consistent granules.",
+          "image": "https://via.placeholder.com/800x600.png?text=Granulator"
+        }
+      ],
+      "packingFilling": [
+        {
+          "id": "labeling",
+          "title": "Labeling Machine",
+          "desc": "Apply labels to products before inspection.",
+          "image": "https://via.placeholder.com/800x600.png?text=Labeling+Machine"
+        },
+        {
+          "id": "inspection",
+          "title": "Inspection Machine",
+          "desc": "Quality inspection for labels/defects before cartoning.",
+          "image": "https://via.placeholder.com/800x600.png?text=Inspection+Machine"
+        },
+        {
+          "id": "cartoning",
+          "title": "Cartoning Machine",
+          "desc": "Automatic carton packaging process.",
+          "image": "https://via.placeholder.com/800x600.png?text=Cartoning+Machine"
+        },
+        {
+          "id": "vffs",
+          "title": "VFFS Packing",
+          "desc": "Vertical form-fill-seal packaging machine.",
+          "image": "https://via.placeholder.com/800x600.png?text=VFFS+Packing"
+        },
+        {
+          "id": "multihead",
+          "title": "Multihead Weigher",
+          "desc": "Multihead weighing system for accurate dosing.",
+          "image": "https://via.placeholder.com/800x600.png?text=Multihead+Weigher"
+        },
+        {
+          "id": "filling",
+          "title": "Filling Machine",
+          "desc": "Filling machine for liquids or powders.",
+          "image": "https://via.placeholder.com/800x600.png?text=Filling+Machine"
+        }
+      ]
+    }
+  },
+  "about": {
+    "hero": {
+      "kicker": "About Us",
+      "title": "Practical, Well-Organized Industrial Solutions—Ready to Run.",
+      "desc": "We support your industrial machinery and related services with a clear approach: understand the needs, recommend the right solution, and assist through implementation.",
+      "primaryCta": "Consult Now",
+      "secondaryCta": "View Products",
+      "stats": [
+        { "label": "Focus", "value": "Industrial needs" },
+        { "label": "Service", "value": "Consultation → Implementation" },
+        { "label": "Principle", "value": "Fast, transparent, structured" }
+      ]
+    },
+    "profile": {
+      "title": "Who We Are",
+      "desc": "We are a team focused on machinery procurement, needs planning, and after-sales support. We believe the best solution isn’t the most expensive one, but the one that fits your production targets, quality requirements, and business capacity.",
+      "missionTitle": "Mission",
+      "mission": "Help companies find effective, safe, and measurable machinery solutions and working systems.",
+      "visionTitle": "Vision",
+      "vision": "Become a trusted industrial partner for expanding production capacity and improving operational efficiency."
+    },
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        "Machine recommendations tailored to your needs",
+        "Clear estimates & budget options",
+        "Installation & training support (optional)",
+        "After-sales support & spare parts (optional)"
+      ],
+      "noteLabel": "Note",
+      "note": "You can tailor this content to your company profile (year established, certifications, partners, etc.)."
+    },
+    "values": {
+      "title": "How We Work",
+      "desc": "To keep projects smooth, we apply the same working principles for every client.",
+      "items": [
+        {
+          "title": "Transparent",
+          "desc": "Specifications, cost estimates, and timelines are explained upfront."
+        },
+        {
+          "title": "Responsive",
+          "desc": "Fast communication and clear progress updates."
+        },
+        {
+          "title": "Structured",
+          "desc": "Requirements, decisions, and changes are properly documented."
+        }
+      ]
+    },
+    "partners": {
+      "title": "Partner Brands",
+      "desc": "A few brands/partners we have worked with for procurement, implementation, and operational support."
+    },
+    "cta": {
+      "title": "Need machinery or production expansion?",
+      "desc": "Tell us what you need. We’ll help map the solution and the most reasonable next steps.",
+      "primary": "Contact Us",
+      "secondary": "See Updates / News"
+    }
+  },
+  "events": {
+    "title": "Events",
+    "subtitle": "Pick a date on the calendar to see events scheduled for that day.",
+    "selectedDateLabel": "Selected date:",
+    "listTitle": "Event List",
+    "empty": "No events on this date. Try selecting another day.",
+    "count": "{{count}} event",
+
+    "calendar": {
+      "prevMonthAria": "Previous month",
+      "nextMonthAria": "Next month",
+      "dayNames": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    },
+
+    "list": [
+      {
+        "id": 4,
+        "title": "SOP & Internal Audit Training",
+        "date": "2026-02-25",
+        "time": "09:00",
+        "location": "Online",
+        "category": "Training",
+        "description": "Applying SOPs, risk registers, and findings-based audits."
+      },
+      {
+        "id": 5,
+        "title": "Machinery Product Expo — Open House",
+        "date": "2026-03-02",
+        "time": "10:00",
+        "location": "HSI Showroom",
+        "category": "Open House",
+        "description": "Product demos and Q&A sessions with the technical team."
+      }
+    ]
+  },
+  "sparepart": {
+    "title": "Spare Parts",
+    "categorySelectAria": "Select spare part category",
+    "startingFrom": "Starting from",
+    "viewDetails": "View details",
+    "price": "Price",
+    "contactUs": "Contact Us",
+    "close": "Close",
+
+    "categories": [
+      { "key": "processSpareParts", "label": "Processing Machine Spare Parts" },
+      {
+        "key": "packagingSpareParts",
+        "label": "Packaging Machine Spare Parts"
+      },
+      { "key": "consumablesMaintenance", "label": "Consumables & Maintenance" }
+    ],
+
+    "productsByCategory": {
+      "processSpareParts": [
+        {
+          "id": "sp-rotor",
+          "title": "Rotor Assembly",
+          "desc": "Rotor component to ensure stable rotation and optimal performance.",
+          "image": "https://via.placeholder.com/800x600.png?text=Rotor+Assembly",
+          "price": 1250000
+        },
+        {
+          "id": "sp-belt",
+          "title": "Timing Belt",
+          "desc": "Transmission belt for synchronized motion and better power efficiency.",
+          "image": "https://via.placeholder.com/800x600.png?text=Timing+Belt",
+          "price": 350000
+        },
+        {
+          "id": "sp-bearing",
+          "title": "Bearing Set",
+          "desc": "Bearing set to reduce friction and maintain rotational stability.",
+          "image": "https://via.placeholder.com/800x600.png?text=Bearing+Set",
+          "price": 450000
+        }
+      ],
+      "packagingSpareParts": [
+        {
+          "id": "sp-nozzle",
+          "title": "Filling Nozzle",
+          "desc": "Filling nozzle designed for accurate volume control and stable flow.",
+          "image": "https://via.placeholder.com/800x600.png?text=Filling+Nozzle",
+          "price": 900000
+        },
+        {
+          "id": "sp-sensor",
+          "title": "Photoelectric Sensor",
+          "desc": "Sensor for product/label detection to improve automation accuracy.",
+          "image": "https://via.placeholder.com/800x600.png?text=Photoelectric+Sensor",
+          "price": 650000
+        },
+        {
+          "id": "sp-heater",
+          "title": "Sealing Heater",
+          "desc": "Heating element for clean and consistent sealing results.",
+          "image": "https://via.placeholder.com/800x600.png?text=Sealing+Heater",
+          "price": 780000
+        }
+      ],
+      "consumablesMaintenance": [
+        {
+          "id": "sp-lubricant",
+          "title": "Food Grade Lubricant",
+          "desc": "Food-grade lubricant for routine maintenance and longer machine lifespan.",
+          "image": "https://via.placeholder.com/800x600.png?text=Food+Grade+Lubricant",
+          "price": 220000
+        },
+        {
+          "id": "sp-o-ring",
+          "title": "O-Ring Kit",
+          "desc": "Assorted O-ring kit for sealing and leak prevention.",
+          "image": "https://via.placeholder.com/800x600.png?text=O-Ring+Kit",
+          "price": 180000
+        },
+        {
+          "id": "sp-filter",
+          "title": "Air Filter",
+          "desc": "Air filter to keep pneumatic/compressor systems clean and protected.",
+          "image": "https://via.placeholder.com/800x600.png?text=Air+Filter",
+          "price": 250000
+        }
+      ]
+    }
+  }
+}

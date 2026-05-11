@@ -1,0 +1,162 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  role         Role     @default(ADMIN)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  news         News[]
+
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String   @db.LongText
+  imageUrl    String?
+  category    String?
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  items       ProductItem[]
+}
+
+model ProductItem {
+  id          String   @id @default(cuid())
+  productId   String
+  name        String
+  description String   @db.LongText
+  specifications String? @db.LongText
+  imageUrl    String?
+  brandLogoUrl String?
+  linkUrl     String?  @db.VarChar(2048)
+  sortOrder   Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, sortOrder])
+}
+
+model Banner {
+  id        String   @id @default(cuid())
+  title     String
+  imageUrl  String
+  linkUrl   String?
+  isActive  Boolean  @default(false)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  date        DateTime // tanggal event (dipakai untuk filter kalender)
+  timeStart   String?  // optional: "09:00"
+  timeEnd     String?  // optional: "17:00"
+  location    String?
+  description String?
+  linkUrl     String?
+  sortOrder   Int      @default(1)
+  isPublished Boolean  @default(true)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([date])
+  @@index([isPublished])
+}
+
+model SparepartCategory {
+  id        Int        @id @default(autoincrement())
+  key       String     @unique
+  nameId    String
+  nameEn    String?
+  sort      Int        @default(0)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  spareparts Sparepart[]
+}
+
+model Sparepart {
+  id          Int      @id @default(autoincrement())
+  categoryId  Int
+  titleId     String
+  titleEn     String?
+  descId      String?
+  descEn      String?
+  price       Int      @default(0)
+
+  // simpan path file (contoh: "/uploads/spareparts/1700000-abc.jpg")
+  image       String?
+
+  sort        Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  category SparepartCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([categoryId])
+}
+
+model News {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+
+  titleId     String
+  titleEn     String?
+  excerptId   String?
+  excerptEn   String?
+
+  contentId   String   @db.LongText
+  contentEn   String?  @db.LongText
+
+  coverImage  String?  // path/url file cover
+
+  // publikasi
+  publishedAt DateTime?
+  isActive    Boolean  @default(true)
+  sort        Int      @default(0)
+
+  // ✅ pembuat
+  authorId    String?
+  author      User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+
+  // (opsional) kalau suatu saat mau tampilkan nama penulis custom, tanpa tergantung user
+  // authorName String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive, publishedAt])
+  @@index([authorId])
+}

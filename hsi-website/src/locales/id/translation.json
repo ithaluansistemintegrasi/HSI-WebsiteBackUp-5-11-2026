@@ -1,0 +1,491 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang Kami",
+    "products": "Produk Kami",
+    "services": "Layanan",
+    "preowned": "Pre-Owned",
+    "contact": "Kontak",
+    "sparepart": "Spare Part",
+    "news": "Berita",
+    "upevent": "Kegiatan",
+
+    "mobile": "Menu",
+
+    "lang": {
+      "id": "Indonesia",
+      "en": "English"
+    },
+    "aria": {
+      "home": "Kembali ke Beranda",
+      "lang": "Pilih bahasa"
+    }
+  },
+
+  "footer": {
+    "companyName": "PT Haluan Sistem Integrasi",
+    "address": "Cluster Golden Vienna 1 Blok B1 No. 2, Jl. Merpati Kencana, Rawa Buntu, Serpong, Tangerang Selatan, Banten 15318",
+
+    "navTitle": "Navigasi",
+
+    "contactTitle": "Kontak PT Haluan Sistem Integrasi",
+    "whatsappLabel": "WhatsApp:",
+    "whatsappValue": "+62 895-0805-4752",
+    "emailLabel": "Email:",
+    "emailValue": "info@haluansistemintegrasi.com",
+    "hoursLabel": "Jam Operasional:",
+    "hoursValue": "Senin–Jumat 09.00–17.00",
+
+    "cta": "Hubungi Kami",
+    "copyright": "© 2025 PT Haluan Sistem Integrasi. All Rights Reserved."
+  },
+  "common": {
+    "back": "Kembali"
+  },
+  "home": {
+    "hero": {
+      "imageAlt": "HSI Hero",
+      "title": "Teknologi Pengolahan Terdepan",
+      "subtitle": "PT Haluan Sistem Integrasi"
+    },
+    "about": {
+      "title": "Tentang Kami",
+      "imageAlt": "Tentang Kami",
+      "desc": "PT Haluan Sistem Integrasi telah berkecimpung di industri pengolahan sejak tahun 2007. Meski masih muda, perusahaan kami telah berhasil membangun jaringan bisnis luas meliputi Indonesia, Singapura, Thailand, Malaysia, dan Filipina di sepanjang Asia Tenggara. Kami berdedikasi untuk menyediakan, memasang, dan merawat berbagai peralatan serta perlengkapan berkualitas tinggi buatan dari pabrik ahli dan terkenal di kalangan industri pengolahan.",
+      "more": "Lihat Lebih Lanjut"
+    },
+    "products": {
+      "title": "Produk Kami",
+      "items": {
+        "process": "Mesin Proses",
+        "packaging": "Mesin Pengemas",
+        "sparepart": "Spare Part"
+      }
+    },
+    "services": {
+      "title": "Layanan yang Kami Tawarkan",
+      "imageAlt": "Layanan",
+      "items": {
+        "0": "Instalasi & Komisioning\n Kami menangani instalasi mesin, start-up, dan komisioning untuk memastikan setiap sistem terpasang dengan benar dan dapat beroperasi secara andal sejak hari pertama.",
+        "1": "Perawatan & Troubleshooting\n Teknisi kami menyediakan perawatan preventif, diagnostik, dan dukungan perbaikan untuk meminimalkan downtime serta menjaga peralatan tetap berjalan secara efisien.",
+        "2": "Pelatihan Operator & Dukungan Teknis\n Kami menyediakan pelatihan operator secara langsung dan panduan teknis berkelanjutan agar tim Anda dapat menggunakan setiap mesin dengan aman, percaya diri, dan efektif."
+      }
+    },
+    "preowned": {
+      "title": "Pre-owned",
+      "imageAlt": "Pre-owned",
+      "desc": "Mesin proses industri merupakan salah satu investasi yang perlu dipertimbangkan dengan baik sebelum membuat keputusan. Terutama bagi industri yang berniat memulai usaha atau jenis mesin-mesin proses menjadi salah satu investasi yang paling penting. Pertimbangan mendasar perlu dilakukan sebelum mengalokasikan dana, terutama bagi Perusahaan yang berniat memulai usaha industri.\n\nPT HALUAN SISTEM INTEGRASI menghadirkan sebuah solusi bagi Anda yang ingin budget hemat namun tidak ingin kompromi soal kualitas produksi. Kami menawarkan Anda mesin PRE-OWNED.\n\nKenapa harus beli di HSI?\nMesin yang kami tawarkan, dapat dipertanggung jawabkan keasliannya dengan menyertakan sertifikat.\nPre-owned Machine yang terawat dengan kualitas yang sangat bagus merupakan alternatif yang bisa anda pilih karena tidak menyerap banyak waktu dan biaya.\n\n- Mesin Berkualitas & bersertifikat\n- Pengiriman yang CEPAT\n- Harga yang EKONOMIS"
+    },
+    "contact": {
+      "title": "Kontak Kami",
+      "submit": "Kirim",
+      "alertValidated": "Pesan berhasil divalidasi! (belum dikirim ke server)",
+      "mapTitle": "PT Haluan Sistem Integrasi",
+      "cardTitle": "PT HALUAN SISTEM INTEGRASI",
+      "cardAddress": "Cluster Golden Vienna 1 Blok B1 No. 2, Jl. Merpati Kencana, Rawa Buntu, Serpong, Tangerang Selatan, Banten 15318",
+      "cardPhone": "+62 895-0805-4752",
+      "form": {
+        "name": {
+          "label": "Nama",
+          "placeholder": "",
+          "error": "Nama wajib diisi."
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "",
+          "error": "Email tidak valid."
+        },
+        "phone": {
+          "label": "Telepon",
+          "placeholder": "",
+          "error": "Telepon wajib diisi (min. 8 angka)."
+        },
+        "message": {
+          "label": "Pesan",
+          "placeholder": "",
+          "error": "Pesan wajib diisi."
+        }
+      },
+      "success": {
+        "title": "Pesan berhasil terkirim",
+        "desc": "Terima kasih telah menghubungi kami. Tim kami akan segera memproses."
+      }
+    }
+  },
+  "packaging": {
+    "title": "Mesin Pengemasan",
+    "categorySelectAria": "Pilih kategori",
+    "bgNotSet": "Background image belum diisi.",
+    "clickForDetail": "Klik untuk lihat detail",
+    "productionLineTitle": "Lini Produksi {{category}}",
+
+    "close": "Tutup",
+    "lineAlt": "Lini produksi {{category}}",
+    "hotspotAria": "Buka detail untuk {{title}}",
+
+    "categories": [
+      { "key": "dryWetFineMilling", "label": "Dry, Wet & Fine Milling" },
+      { "key": "mixingGranulation", "label": "Mixing and Granulation" },
+      { "key": "packingFilling", "label": "Packing & Filling" }
+    ],
+
+    "productsByCategory": {
+      "dryWetFineMilling": [
+        {
+          "id": "micronizer-jet-mill",
+          "title": "Micronizer Jet Mill",
+          "desc": "Mesin jet mill untuk penghalusan partikel dengan presisi tinggi.",
+          "image": "https://via.placeholder.com/800x600.png?text=Micronizer+Jet+Mill"
+        },
+        {
+          "id": "hammer-mill",
+          "title": "Hammer Mill",
+          "desc": "Mesin hammer mill untuk penghancuran material.",
+          "image": "https://via.placeholder.com/800x600.png?text=Hammer+Mill"
+        },
+        {
+          "id": "pin-mill",
+          "title": "Pin Mill",
+          "desc": "Mesin pin mill untuk fine grinding.",
+          "image": "https://via.placeholder.com/800x600.png?text=Pin+Mill"
+        }
+      ],
+      "mixingGranulation": [
+        {
+          "id": "ribbon-mixer",
+          "title": "Ribbon Mixer",
+          "desc": "Mixer horizontal untuk pencampuran yang merata.",
+          "image": "https://via.placeholder.com/800x600.png?text=Ribbon+Mixer"
+        },
+        {
+          "id": "high-shear-mixer",
+          "title": "High Shear Mixer",
+          "desc": "High shear mixer untuk granulasi cepat.",
+          "image": "https://via.placeholder.com/800x600.png?text=High+Shear+Mixer"
+        },
+        {
+          "id": "granulator",
+          "title": "Granulator",
+          "desc": "Granulator untuk membentuk granul terkontrol.",
+          "image": "https://via.placeholder.com/800x600.png?text=Granulator"
+        }
+      ],
+      "packingFilling": [
+        {
+          "id": "labeling",
+          "title": "Labeling Machine",
+          "desc": "Pelabelan produk sebelum inspeksi."
+        },
+        {
+          "id": "inspection",
+          "title": "Inspection Machine",
+          "desc": "Cek kualitas/label/defect sebelum cartoning."
+        },
+        {
+          "id": "cartoning",
+          "title": "Cartoning Machine",
+          "desc": "Proses pengemasan karton otomatis."
+        },
+        {
+          "id": "vffs",
+          "title": "VFFS Packing",
+          "desc": "Mesin packaging vertical.",
+          "image": "https://via.placeholder.com/800x600.png?text=VFFS+Packing"
+        },
+        {
+          "id": "multihead",
+          "title": "Multihead Weigher",
+          "desc": "Sistem penimbangan multihead.",
+          "image": "https://via.placeholder.com/800x600.png?text=Multihead+Weigher"
+        },
+        {
+          "id": "filling",
+          "title": "Filling Machine",
+          "desc": "Mesin filling liquid/powder.",
+          "image": "https://via.placeholder.com/800x600.png?text=Filling+Machine"
+        }
+      ]
+    }
+  },
+  "process": {
+    "title": "Mesin Proses",
+    "categorySelectAria": "Pilih kategori",
+    "bgNotSet": "Background image belum diisi.",
+    "clickForDetail": "Klik untuk lihat detail",
+    "productionLineTitle": "{{category}}",
+
+    "close": "Tutup",
+    "lineAlt": "{{category}}",
+    "hotspotAria": "Buka detail untuk {{title}}",
+
+    "categories": [
+      { "key": "dryWetFineMilling", "label": "Dry, Wet & Fine Milling" },
+      { "key": "mixingGranulation", "label": "Mixing and Granulation" },
+      { "key": "packingFilling", "label": "Packing & Filling" }
+    ],
+
+    "productsByCategory": {
+      "dryWetFineMilling": [
+        {
+          "id": "micronizer-jet-mill",
+          "title": "Micronizer Jet Mill",
+          "desc": "Mesin jet mill untuk penghalusan partikel dengan presisi tinggi.",
+          "image": "https://via.placeholder.com/800x600.png?text=Micronizer+Jet+Mill"
+        },
+        {
+          "id": "hammer-mill",
+          "title": "Hammer Mill",
+          "desc": "Mesin hammer mill untuk penghancuran material.",
+          "image": "https://via.placeholder.com/800x600.png?text=Hammer+Mill"
+        },
+        {
+          "id": "pin-mill",
+          "title": "Pin Mill",
+          "desc": "Mesin pin mill untuk fine grinding.",
+          "image": "https://via.placeholder.com/800x600.png?text=Pin+Mill"
+        }
+      ],
+      "mixingGranulation": [
+        {
+          "id": "ribbon-mixer",
+          "title": "Ribbon Mixer",
+          "desc": "Mixer horizontal untuk pencampuran.",
+          "image": "https://via.placeholder.com/800x600.png?text=Ribbon+Mixer"
+        },
+        {
+          "id": "high-shear-mixer",
+          "title": "High Shear Mixer",
+          "desc": "High shear mixer untuk granulasi cepat.",
+          "image": "https://via.placeholder.com/800x600.png?text=High+Shear+Mixer"
+        },
+        {
+          "id": "granulator",
+          "title": "Granulator",
+          "desc": "Granulator untuk membentuk granul terkontrol.",
+          "image": "https://via.placeholder.com/800x600.png?text=Granulator"
+        }
+      ],
+      "packingFilling": [
+        {
+          "id": "labeling",
+          "title": "Labeling Machine",
+          "desc": "Pelabelan produk sebelum inspeksi.",
+          "image": "https://via.placeholder.com/800x600.png?text=Labeling+Machine"
+        },
+        {
+          "id": "inspection",
+          "title": "Inspection Machine",
+          "desc": "Cek kualitas/label/defect sebelum cartoning.",
+          "image": "https://via.placeholder.com/800x600.png?text=Inspection+Machine"
+        },
+        {
+          "id": "cartoning",
+          "title": "Cartoning Machine",
+          "desc": "Proses pengemasan karton otomatis.",
+          "image": "https://via.placeholder.com/800x600.png?text=Cartoning+Machine"
+        },
+        {
+          "id": "vffs",
+          "title": "VFFS Packing",
+          "desc": "Mesin packaging vertical.",
+          "image": "https://via.placeholder.com/800x600.png?text=VFFS+Packing"
+        },
+        {
+          "id": "multihead",
+          "title": "Multihead Weigher",
+          "desc": "Sistem penimbangan multihead.",
+          "image": "https://via.placeholder.com/800x600.png?text=Multihead+Weigher"
+        },
+        {
+          "id": "filling",
+          "title": "Filling Machine",
+          "desc": "Mesin filling liquid/powder.",
+          "image": "https://via.placeholder.com/800x600.png?text=Filling+Machine"
+        }
+      ]
+    }
+  },
+  "about": {
+    "hero": {
+      "kicker": "Tentang Kami",
+      "title": "Solusi Industri yang Praktis, Rapi, dan Siap Dipakai.",
+      "desc": "Kami membantu kebutuhan mesin & layanan pendukung industri dengan pendekatan yang jelas: pahami kebutuhan, rekomendasikan solusi yang tepat, lalu dampingi sampai implementasi berjalan.",
+      "primaryCta": "Konsultasi Sekarang",
+      "secondaryCta": "Lihat Produk",
+      "stats": [
+        { "label": "Fokus", "value": "Kebutuhan industri" },
+        { "label": "Layanan", "value": "Konsultasi → Implementasi" },
+        { "label": "Prinsip", "value": "Cepat, transparan, rapi" }
+      ]
+    },
+    "profile": {
+      "title": "Siapa Kami",
+      "desc": "Kami adalah tim yang berfokus pada pengadaan mesin, perencanaan kebutuhan, serta dukungan layanan purna jual. Kami percaya solusi yang baik itu bukan yang paling mahal, tapi yang paling sesuai dengan target produksi, kualitas, dan kapasitas bisnis kamu.",
+      "missionTitle": "Misi",
+      "mission": "Memudahkan perusahaan menemukan solusi mesin dan sistem kerja yang efektif, aman, dan terukur.",
+      "visionTitle": "Visi",
+      "vision": "Menjadi partner industri yang dipercaya untuk pengembangan kapasitas produksi dan efisiensi operasional."
+    },
+    "benefits": {
+      "title": "Yang Kamu Dapat",
+      "items": [
+        "Rekomendasi mesin sesuai kebutuhan",
+        "Estimasi & opsi budget yang jelas",
+        "Dukungan instalasi & training (opsional)",
+        "After-sales support & sparepart (opsional)"
+      ],
+      "noteLabel": "Catatan",
+      "note": "Konten ini bisa kamu sesuaikan dengan profil perusahaan (tahun berdiri, sertifikasi, partner, dsb)."
+    },
+    "values": {
+      "title": "Nilai Kerja Kami",
+      "desc": "Biar proyeknya enak dijalankan, kami pakai prinsip kerja yang sama untuk setiap klien.",
+      "items": [
+        {
+          "title": "Transparan",
+          "desc": "Spesifikasi, estimasi biaya, dan timeline dijelaskan di awal."
+        },
+        {
+          "title": "Responsif",
+          "desc": "Komunikasi cepat dan update progres yang jelas."
+        },
+        {
+          "title": "Rapi",
+          "desc": "Dokumentasi kebutuhan, keputusan, dan perubahan tercatat."
+        }
+      ]
+    },
+    "partners": {
+      "title": "Brand yang Bekerja Sama",
+      "desc": "Beberapa brand/partner yang pernah bekerja sama dengan kami dalam pengadaan, implementasi, dan dukungan operasional."
+    },
+    "cta": {
+      "title": "Punya kebutuhan mesin atau pengembangan produksi?",
+      "desc": "Ceritakan kebutuhanmu. Kami bantu mapping solusi dan langkah paling masuk akal.",
+      "primary": "Hubungi Kami",
+      "secondary": "Lihat Update / News"
+    }
+  },
+  "events": {
+    "title": "Kegiatan",
+    "subtitle": "Pilih tanggal di kalender untuk melihat event pada tanggal tersebut.",
+    "selectedDateLabel": "Tanggal dipilih:",
+    "listTitle": "Daftar Event",
+    "empty": "Tidak ada event pada tanggal ini. Coba pilih tanggal lain.",
+    "count": "{{count}} event",
+
+    "calendar": {
+      "prevMonthAria": "Bulan sebelumnya",
+      "nextMonthAria": "Bulan berikutnya",
+      "dayNames": ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
+    },
+
+    "list": [
+      {
+        "id": 4,
+        "title": "Pelatihan SOP & Audit Internal",
+        "date": "2026-02-25",
+        "time": "09:00",
+        "location": "Online",
+        "category": "Training",
+        "description": "Penerapan SOP, risk register, dan audit berbasis temuan."
+      },
+      {
+        "id": 5,
+        "title": "Pameran Produk Mesin - Open House",
+        "date": "2026-03-02",
+        "time": "10:00",
+        "location": "Showroom HSI",
+        "category": "Open House",
+        "description": "Demo produk + sesi tanya jawab dengan tim teknis."
+      }
+    ]
+  },
+  "sparepart": {
+    "title": "Spare Part",
+    "categorySelectAria": "Pilih kategori spare part",
+    "startingFrom": "Mulai dari",
+    "viewDetails": "Lihat detail",
+    "price": "Harga",
+    "contactUs": "Hubungi Kami",
+    "close": "Tutup",
+
+    "categories": [
+      { "key": "processSpareParts", "label": "Spare Part Mesin Proses" },
+      { "key": "packagingSpareParts", "label": "Spare Part Mesin Pengemas" },
+      { "key": "consumablesMaintenance", "label": "Consumable & Maintenance" }
+    ],
+
+    "productsByCategory": {
+      "processSpareParts": [
+        {
+          "id": "sp-rotor",
+          "title": "Rotor Assembly",
+          "desc": "Komponen rotor untuk memastikan putaran stabil dan performa optimal.",
+          "image": "https://via.placeholder.com/800x600.png?text=Rotor+Assembly",
+          "price": 1250000
+        },
+        {
+          "id": "sp-belt",
+          "title": "Timing Belt",
+          "desc": "Belt transmisi untuk sinkronisasi gerak dan efisiensi tenaga.",
+          "image": "https://via.placeholder.com/800x600.png?text=Timing+Belt",
+          "price": 350000
+        },
+        {
+          "id": "sp-bearing",
+          "title": "Bearing Set",
+          "desc": "Set bearing untuk mengurangi gesekan dan menjaga kestabilan putaran.",
+          "image": "https://via.placeholder.com/800x600.png?text=Bearing+Set",
+          "price": 450000
+        }
+      ],
+      "packagingSpareParts": [
+        {
+          "id": "sp-nozzle",
+          "title": "Filling Nozzle",
+          "desc": "Nozzle pengisian untuk akurasi volume dan aliran yang stabil.",
+          "image": "https://via.placeholder.com/800x600.png?text=Filling+Nozzle",
+          "price": 900000
+        },
+        {
+          "id": "sp-sensor",
+          "title": "Photoelectric Sensor",
+          "desc": "Sensor untuk deteksi produk/label agar proses otomatis lebih presisi.",
+          "image": "https://via.placeholder.com/800x600.png?text=Photoelectric+Sensor",
+          "price": 650000
+        },
+        {
+          "id": "sp-heater",
+          "title": "Sealing Heater",
+          "desc": "Elemen pemanas untuk sealing yang rapi dan konsisten.",
+          "image": "https://via.placeholder.com/800x600.png?text=Sealing+Heater",
+          "price": 780000
+        }
+      ],
+      "consumablesMaintenance": [
+        {
+          "id": "sp-lubricant",
+          "title": "Food Grade Lubricant",
+          "desc": "Pelumas food grade untuk perawatan rutin dan umur pakai mesin.",
+          "image": "https://via.placeholder.com/800x600.png?text=Food+Grade+Lubricant",
+          "price": 220000
+        },
+        {
+          "id": "sp-o-ring",
+          "title": "O-Ring Kit",
+          "desc": "Kit o-ring berbagai ukuran untuk sealing dan pencegahan kebocoran.",
+          "image": "https://via.placeholder.com/800x600.png?text=O-Ring+Kit",
+          "price": 180000
+        },
+        {
+          "id": "sp-filter",
+          "title": "Air Filter",
+          "desc": "Filter udara untuk menjaga kebersihan sistem pneumatik/kompresor.",
+          "image": "https://via.placeholder.com/800x600.png?text=Air+Filter",
+          "price": 250000
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,2 @@
+ALTER TABLE `ProductItem` ADD COLUMN `brandLogoUrl` VARCHAR(191) NULL;
+ALTER TABLE `ProductItem` ADD COLUMN `linkUrl` VARCHAR(191) NULL;
