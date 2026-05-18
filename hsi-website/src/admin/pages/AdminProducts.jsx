@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { apiFetch } from "../api";
 
 const EMPTY_SPEC_ROW = { label: "", value: "" };
@@ -9,11 +9,13 @@ const INITIAL_PRODUCT_FORM = {
   slug: "",
   description: "",
   category: "",
+  sortOrder: 0,
   isPublished: true,
 };
 
 const INITIAL_ITEM_FORM = {
   id: null,
+  productIds: [],
   title: "",
   description: "",
   specifications: [{ ...EMPTY_SPEC_ROW }],
@@ -33,6 +35,13 @@ function normalizeSpecifications(rows) {
     .filter((row) => row.label.trim() || row.value.trim());
 
   return cleaned.length ? cleaned : [{ ...EMPTY_SPEC_ROW }];
+}
+
+function normalizeProductIds(ids, fallbackIds = []) {
+  const values = Array.isArray(ids) ? ids : [];
+  const fallbacks = Array.isArray(fallbackIds) ? fallbackIds : [fallbackIds];
+
+  return [...new Set([...values, ...fallbacks].map(String).filter(Boolean))];
 }
 
 export default function AdminProducts() {
@@ -56,10 +65,6 @@ export default function AdminProducts() {
   const API_BASE =
     import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ||
     "http://localhost:8080";
-
-  const selectedProduct = useMemo(() => {
-    return items.find((item) => item.id === selectedProductId) || null;
-  }, [items, selectedProductId]);
 
   async function loadProducts(preferredProductId) {
     setLoading(true);
@@ -124,7 +129,12 @@ export default function AdminProducts() {
   }, []);
 
   useEffect(() => {
-    resetItemForm();
+    setItemForm({
+      ...INITIAL_ITEM_FORM,
+      productIds: selectedProductId ? [selectedProductId] : [],
+    });
+    setItemImageFile(null);
+    setItemBrandLogoFile(null);
     loadProductItems(selectedProductId);
   }, [selectedProductId]);
 
@@ -134,7 +144,10 @@ export default function AdminProducts() {
   }
 
   function resetItemForm() {
-    setItemForm(INITIAL_ITEM_FORM);
+    setItemForm({
+      ...INITIAL_ITEM_FORM,
+      productIds: selectedProductId ? [selectedProductId] : [],
+    });
     setItemImageFile(null);
     setItemBrandLogoFile(null);
   }
@@ -146,6 +159,7 @@ export default function AdminProducts() {
       slug: item.slug || "",
       description: item.description || "",
       category: item.category || "",
+      sortOrder: item.sortOrder ?? 0,
       isPublished: !!item.isPublished,
     });
     setImageFile(null);
@@ -155,6 +169,10 @@ export default function AdminProducts() {
   function startEditItem(item) {
     setItemForm({
       id: item.id,
+      productIds: normalizeProductIds(item.productIds, [
+        item.productId,
+        selectedProductId,
+      ]),
       title: item.name || "",
       description: item.description || "",
       specifications: normalizeSpecifications(item.specifications),
@@ -164,6 +182,21 @@ export default function AdminProducts() {
     });
     setItemImageFile(null);
     setItemBrandLogoFile(null);
+  }
+
+  function toggleItemProduct(productId) {
+    setItemForm((prev) => {
+      const currentIds = normalizeProductIds(prev.productIds);
+      const hasProduct = currentIds.includes(productId);
+      const nextIds = hasProduct
+        ? currentIds.filter((id) => id !== productId)
+        : [...currentIds, productId];
+
+      return {
+        ...prev,
+        productIds: nextIds,
+      };
+    });
   }
 
   function updateSpecificationRow(index, key, value) {
@@ -213,6 +246,7 @@ export default function AdminProducts() {
       fd.append("slug", form.slug.trim());
       fd.append("description", form.description.trim());
       fd.append("category", form.category.trim());
+      fd.append("sortOrder", String(Number(form.sortOrder) || 0));
       fd.append("isPublished", String(!!form.isPublished));
       if (imageFile) fd.append("image", imageFile);
 
@@ -253,10 +287,18 @@ export default function AdminProducts() {
       return;
     }
 
+    const selectedItemProductIds = normalizeProductIds(itemForm.productIds);
+
+    if (!selectedItemProductIds.length) {
+      setItemErr("Pilih minimal satu product category untuk item ini.");
+      return;
+    }
+
     setSavingItem(true);
 
     try {
       const fd = new FormData();
+      fd.append("productIds", JSON.stringify(selectedItemProductIds));
       fd.append("title", itemForm.title.trim());
       fd.append("description", itemForm.description.trim());
       fd.append(
@@ -380,6 +422,7 @@ export default function AdminProducts() {
                   <th className="text-left p-3">Image</th>
                   <th className="text-left p-3">Title</th>
                   <th className="text-left p-3">Slug</th>
+                  <th className="text-left p-3">Sort</th>
                   <th className="text-center p-3">Items</th>
                   <th className="text-right p-3">Status</th>
                   <th className="text-right p-3">Aksi</th>
@@ -420,6 +463,9 @@ export default function AdminProducts() {
                         ) : null}
                       </td>
                       <td className="p-3 text-slate-600">{item.slug}</td>
+                      <td className="p-3 text-slate-600">
+                        {item.sortOrder ?? 0}
+                      </td>
                       <td className="p-3 text-center text-slate-600">
                         {item._count?.items ?? 0}
                       </td>
@@ -465,7 +511,7 @@ export default function AdminProducts() {
 
                 {!items.length && (
                   <tr>
-                    <td className="p-4 text-center text-slate-500" colSpan={6}>
+                    <td className="p-4 text-center text-slate-500" colSpan={7}>
                       {loading ? "Loading..." : "Belum ada product menu"}
                     </td>
                   </tr>
@@ -515,6 +561,22 @@ export default function AdminProducts() {
                 }
                 placeholder="opsional"
               />
+            </div>
+
+            <div>
+              <div className="text-xs text-slate-500 mb-1">Sort Order</div>
+              <input
+                type="number"
+                className="w-full border border-slate-300 rounded-lg px-3 py-2"
+                value={form.sortOrder}
+                onChange={(e) =>
+                  setForm((s) => ({ ...s, sortOrder: e.target.value }))
+                }
+                placeholder="0"
+              />
+              <div className="text-xs text-slate-400 mt-1">
+                Angka lebih kecil tampil lebih dulu di card Our Products.
+              </div>
             </div>
 
             <div>
@@ -649,6 +711,14 @@ export default function AdminProducts() {
                           {item.specifications.length} baris spesifikasi
                         </div>
                       ) : null}
+                      {item.products?.length ? (
+                        <div className="mt-2 text-[11px] text-slate-500">
+                          Category:{" "}
+                          {item.products
+                            .map((product) => product.name || product.slug)
+                            .join(", ")}
+                        </div>
+                      ) : null}
                     </td>
                     <td className="p-3 text-slate-600">
                       {item.sortOrder ?? 0}
@@ -707,11 +777,52 @@ export default function AdminProducts() {
           </div>
           <div className="text-xs text-slate-500 mb-4">
             {selectedProductMeta?.name
-              ? `Item ini akan tampil sebagai card di slug ${selectedProductMeta.slug}`
+              ? `Pilih satu atau lebih product category tempat item ini tampil.`
               : "Buat atau pilih product menu terlebih dulu."}
           </div>
 
           <form onSubmit={saveProductItem} className="space-y-4">
+            <div>
+              <div className="text-xs text-slate-500 mb-2">
+                Product Category
+              </div>
+              <div className="max-h-40 overflow-auto rounded-lg border border-slate-200 p-2 space-y-2">
+                {items.map((product) => (
+                  <label
+                    key={product.id}
+                    className="flex items-start gap-2 rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-50"
+                  >
+                    <input
+                      type="checkbox"
+                      className="mt-1"
+                      checked={normalizeProductIds(
+                        itemForm.productIds,
+                      ).includes(product.id)}
+                      onChange={() => toggleItemProduct(product.id)}
+                      disabled={!selectedProductId}
+                    />
+                    <span>
+                      <span className="block font-medium text-slate-800">
+                        {product.name}
+                      </span>
+                      <span className="block text-xs text-slate-400">
+                        /products/{product.slug}
+                      </span>
+                    </span>
+                  </label>
+                ))}
+
+                {!items.length ? (
+                  <div className="px-2 py-3 text-sm text-slate-500">
+                    Belum ada product category.
+                  </div>
+                ) : null}
+              </div>
+              <div className="mt-2 text-xs text-slate-400">
+                Item yang sama bisa tampil di beberapa halaman product.
+              </div>
+            </div>
+
             <div>
               <div className="text-xs text-slate-500 mb-1">Title Item</div>
               <input

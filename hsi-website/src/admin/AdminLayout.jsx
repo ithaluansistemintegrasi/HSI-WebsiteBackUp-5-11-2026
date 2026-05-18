@@ -91,6 +91,14 @@ export default function AdminLayout() {
               >
                 Spareparts
               </NavLink>
+              <NavLink
+                to="/admin/partners"
+                className={({ isActive }) =>
+                  `${linkBase} ${isActive ? linkActive : linkIdle}`
+                }
+              >
+                Partners
+              </NavLink>
             </nav>
           </aside>
 

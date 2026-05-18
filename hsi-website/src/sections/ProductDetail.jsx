@@ -132,8 +132,6 @@ export default function ProductDetail() {
               {item.name}
             </h1>
 
-            <div className="mt-3 text-sm text-slate-500">Slug: {item.slug}</div>
-
             <p className="mt-6 text-slate-700 leading-relaxed whitespace-pre-line">
               {item.description || "Detail produk ini belum ditambahkan."}
             </p>

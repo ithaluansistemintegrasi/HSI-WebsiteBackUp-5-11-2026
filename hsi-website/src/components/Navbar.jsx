@@ -108,7 +108,7 @@ export default function Navbar() {
             </button>
 
             {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-8 text-white text-sm font-sans">
+            <div className="hidden md:flex items-center gap-8 text-white text-base font-sans">
               {NAV_LINKS.map((l) => (
                 <button
                   key={l.key}

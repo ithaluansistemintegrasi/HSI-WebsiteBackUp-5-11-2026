@@ -55,7 +55,7 @@ export default function HomeProductsSection({
   return (
     <>
       <h2
-        className={`text-center text-white text-2xl md:text-3xl font-medium ${revealClass(
+        className={`text-center text-white text-5xl md:text-6xl font-medium ${revealClass(
           isInView,
           "up",
         )}`}
@@ -93,7 +93,7 @@ export default function HomeProductsSection({
             ))}
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:hidden">
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:hidden">
             {products.map((product, idx) => (
               <div
                 key={product.id}
@@ -210,8 +210,8 @@ function MobileProductCard({ imageUrl, title, to }) {
         )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 p-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-white">
+        <div className="absolute inset-0 flex items-center justify-center p-4 text-center">
+          <p className="text-2xl font-semibold uppercase tracking-[0.08em] text-white drop-shadow-md">
             {title}
           </p>
         </div>

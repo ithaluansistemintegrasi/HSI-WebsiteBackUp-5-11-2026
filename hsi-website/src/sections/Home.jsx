@@ -7,30 +7,16 @@ import aboutImg from "../assets/about-section/about-image1.webp";
 import servicesImg from "../assets/services-section/services.jpg";
 import preownedImg from "../assets/preowned-section/preowned.jpg";
 
-import brand1 from "../assets/about-section/about-page/brand-1.svg";
-import brand2 from "../assets/about-section/about-page/brand-2.jpg";
-import brand3 from "../assets/about-section/about-page/brand-3.jpg";
-import brand4 from "../assets/about-section/about-page/brand-4.png";
-import brand5 from "../assets/about-section/about-page/brand-5.png";
-import brand6 from "../assets/about-section/about-page/brand-6.png";
-import brand7 from "../assets/about-section/about-page/brand-7.png";
-import brand8 from "../assets/about-section/about-page/brand-8.jpg";
-import brand9 from "../assets/about-section/about-page/brand-9.png";
-import brand10 from "../assets/about-section/about-page/brand-10.png";
-import brand11 from "../assets/about-section/about-page/brand-11.png";
-import brand12 from "../assets/about-section/about-page/brand-12.png";
-import brand13 from "../assets/about-section/about-page/brand-13.png";
-import brand14 from "../assets/about-section/about-page/brand-14.png";
-
 import SeasonGreetingPopup from "../components/SeasonGreeting";
 
 import HomeProductsSection from "../components/HomeProductsSection";
+import usePartnerBrands from "../hooks/usePartnerBrands";
 
 import serviceLogo1 from "../assets/services-section/services-logo1.png";
 import serviceLogo2 from "../assets/services-section/services-logo2.png";
 import serviceLogo3 from "../assets/services-section/services-logo3.png";
 
-const P_TEXT = "text-sm md:text-base leading-relaxed";
+const P_TEXT = "text-[18px] leading-relaxed";
 
 const INITIAL_FORM = { name: "", email: "", phone: "", message: "" };
 const INITIAL_TOUCHED = {
@@ -49,8 +35,8 @@ function useInView({ threshold = 0.2, root = null, rootMargin = "0px" } = {}) {
     if (!el) return;
 
     if (typeof IntersectionObserver === "undefined") {
-      setIsInView(true);
-      return;
+      const frame = requestAnimationFrame(() => setIsInView(true));
+      return () => cancelAnimationFrame(frame);
     }
 
     const obs = new IntersectionObserver(
@@ -135,7 +121,7 @@ function SectionHeader({ title, subtitle }) {
         {title}
       </h2>
       {subtitle ? (
-        <p className="mt-2 text-sm text-gray-600 md:text-base">{subtitle}</p>
+        <p className="mt-2 text-[18px] text-gray-600">{subtitle}</p>
       ) : null}
     </div>
   );
@@ -148,14 +134,18 @@ function BrandCarousel({ items }) {
   const slides = useMemo(() => chunk(items, perSlide), [items]);
   const total = slides.length;
 
+  useEffect(() => {
+    setIdx(0);
+  }, [total]);
+
   const prev = () => setIdx((v) => (v - 1 + total) % total);
   const next = () => setIdx((v) => (v + 1) % total);
 
   return (
     <section className="animate-fade-up-soft bg-[#8FC3DC] py-16 md:py-24">
       <div className="w-full px-4 md:px-6">
-        <h2 className="mb-10 text-center text-3xl font-semibold text-white md:mb-14 md:text-4xl">
-          Partner Brand
+        <h2 className="mb-10 text-center text-5xl font-semibold text-white md:mb-14 md:text-6xl ">
+          Our Trusted Partners
         </h2>
 
         <div className="flex items-center justify-center gap-4 md:gap-7">
@@ -168,20 +158,27 @@ function BrandCarousel({ items }) {
             ‹
           </button>
 
-          <div className="grid flex-1 grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
-            {slides[idx].map((p) => (
-              <div
-                key={p.name}
-                className="flex h-[110px] items-center justify-center rounded-[22px] bg-white px-6 py-5 shadow-[0_10px_30px_rgba(255,255,255,0.12)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_40px_rgba(255,255,255,0.24)] md:h-[130px] md:px-8"
-              >
-                <img
-                  src={p.src}
-                  alt={p.name}
-                  className="max-h-14 w-auto max-w-full object-contain md:max-h-16"
-                  loading="lazy"
-                />
-              </div>
-            ))}
+          <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
+            {(slides[idx] || []).map((p) => {
+              const CardTag = p.linkUrl ? "a" : "div";
+
+              return (
+                <CardTag
+                  key={p.id || p.name}
+                  href={p.linkUrl || undefined}
+                  target={p.linkUrl ? "_blank" : undefined}
+                  rel={p.linkUrl ? "noreferrer" : undefined}
+                  className="flex h-[110px] items-center justify-center rounded-[22px] bg-white px-6 py-5 shadow-[0_10px_30px_rgba(255,255,255,0.12)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_18px_40px_rgba(255,255,255,0.24)] md:h-[130px] md:px-8"
+                >
+                  <img
+                    src={p.src}
+                    alt={p.name}
+                    className="max-h-14 w-auto max-w-full object-contain md:max-h-16"
+                    loading="lazy"
+                  />
+                </CardTag>
+              );
+            })}
           </div>
 
           <button
@@ -223,11 +220,11 @@ function VideoCarousel({ videos }) {
     <div className="rounded-2xl bg-white p-4 md:p-6">
       <div className="grid items-start gap-6 md:grid-cols-2 md:gap-10">
         <div>
-          <h3 className="text-lg font-semibold text-slate-900 md:text-2xl">
+          <h3 className="text-lg font-semibold text-slate-900 md:text-6xl">
             {active.title}
           </h3>
           {active.desc ? (
-            <p className="mt-2 text-sm leading-relaxed text-slate-600 md:text-base">
+            <p className="mt-2 text-[18px] leading-relaxed text-slate-600">
               {active.desc}
             </p>
           ) : null}
@@ -272,22 +269,7 @@ function VideoCarousel({ videos }) {
 }
 
 function PartnersAndVideosSection() {
-  const partners = [
-    { name: "Brand 1", src: brand1 },
-    { name: "Brand 2", src: brand2 },
-    { name: "Brand 3", src: brand3 },
-    { name: "Brand 4", src: brand4 },
-    { name: "Brand 5", src: brand5 },
-    { name: "Brand 6", src: brand6 },
-    { name: "Brand 7", src: brand7 },
-    { name: "Brand 8", src: brand8 },
-    { name: "Brand 9", src: brand9 },
-    { name: "Brand 10", src: brand10 },
-    { name: "Brand 11", src: brand11 },
-    { name: "Brand 12", src: brand12 },
-    { name: "Brand 13", src: brand13 },
-    { name: "Brand 14", src: brand14 },
-  ];
+  const partners = usePartnerBrands();
 
   const videos = [
     {
@@ -313,7 +295,7 @@ function PartnersAndVideosSection() {
   return (
     <section id="partners" className="bg-white">
       <div className="w-full py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-6 hidden">
           <VideoCarousel videos={videos} />
         </div>
 
@@ -447,7 +429,7 @@ export default function Home() {
                   <div className="text-lg font-semibold text-slate-900">
                     {t("home.contact.success.title")}
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-2 text-[18px] leading-relaxed text-slate-600">
                     {t("home.contact.success.desc")}
                   </p>
                 </div>
@@ -480,11 +462,11 @@ export default function Home() {
 
           <div className="relative mx-auto h-full max-w-7xl px-6">
             <div className="flex h-full items-center justify-end">
-              <div className="max-w-xl text-right animate-fade-up-soft">
-                <h1 className="animate-slide-in-right text-4xl font-bold leading-tight text-white md:text-5xl">
+              <div className="max-w-xl text-center animate-fade-up-soft md:text-right">
+                <h1 className="animate-slide-in-right text-5xl font-bold leading-tight text-white md:text-6xl">
                   {t("home.hero.title")}
                 </h1>
-                <h2 className="animate-slide-in-right animate-delay-150 mt-4 text-sm text-white/90 md:text-base">
+                <h2 className="animate-slide-in-right animate-delay-150 mt-4 text-xl text-white/90 md:text-2xl">
                   {t("home.hero.subtitle")}
                 </h2>
               </div>
@@ -494,10 +476,10 @@ export default function Home() {
 
         <section id="about" className="bg-white" ref={aboutRef}>
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="py-16 md:py-24">
-              <div className="mx-auto max-w-7xl px-[59.5px] lg:pr-12">
+            <div className="flex min-h-[360px] items-center py-10 md:min-h-[440px] md:py-12 lg:min-h-[520px] lg:py-0">
+              <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-12">
                 <h2
-                  className={`text-4xl font-medium text-gray-900 ${revealClass(
+                  className={`text-5xl text-center font-medium leading-tight text-gray-900 md:text-6xl md:text-left ${revealClass(
                     aboutInView,
                     "left",
                   )}`}
@@ -507,7 +489,7 @@ export default function Home() {
                 </h2>
 
                 <p
-                  className={`mt-8 max-w-xl text-gray-700 ${P_TEXT} ${revealClass(
+                  className={`mt-7 max-w-2xl text-[18px] leading-relaxed text-gray-900 ${revealClass(
                     aboutInView,
                     "left",
                   )}`}
@@ -516,15 +498,13 @@ export default function Home() {
                   {t("home.about.desc")}
                 </p>
 
-                <br />
-
                 <div
-                  className={`${revealClass(aboutInView, "left")} text-right`}
+                  className={`mt-8 ${revealClass(aboutInView, "left")} text-right`}
                   style={delayStyle(300)}
                 >
                   <Link
                     to="/tentang-kami"
-                    className="inline-flex items-center gap-2 text-[#4D6CFF] transition-all duration-300 hover:translate-x-1 hover:opacity-70"
+                    className="inline-flex items-center gap-2 text-lg text-[#4D6CFF] transition-all duration-300 hover:translate-x-1 hover:opacity-70"
                   >
                     {t("home.about.more")} <span aria-hidden>›</span>
                   </Link>
@@ -562,7 +542,7 @@ export default function Home() {
             <div className="py-16 md:py-24">
               <div className="mx-auto max-w-7xl px-[59.5px] lg:pr-12">
                 <h2
-                  className={`text-3xl font-medium text-gray-900 md:text-4xl ${revealClass(
+                  className={`text-5xl font-medium text-gray-900 text-center md:text-6xl md:text-left ${revealClass(
                     servicesInView,
                     "left",
                   )}`}
@@ -621,7 +601,7 @@ export default function Home() {
               <div className="flex h-full items-center">
                 <div className="w-full px-6 py-16 md:py-24 lg:px-14">
                   <h2
-                    className={`text-right text-2xl font-medium md:text-3xl ${revealClass(
+                    className={`text-center text-5xl font-medium md:text-6xl md:text-right ${revealClass(
                       preownedInView,
                       "right",
                     )}`}
@@ -631,7 +611,7 @@ export default function Home() {
                   </h2>
 
                   <p
-                    className={`mt-6 ml-auto max-w-md whitespace-pre-line text-right text-white/90 ${P_TEXT} ${revealClass(
+                    className={`mt-6 ml-auto max-w-md whitespace-pre-line text-center text-white/90 md:text-right ${P_TEXT} ${revealClass(
                       preownedInView,
                       "right",
                     )}`}
@@ -650,7 +630,7 @@ export default function Home() {
         <section id="contact" className="bg-white" ref={contactRef}>
           <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
             <h2
-              className={`text-3xl font-medium text-gray-900 md:text-4xl ${revealClass(
+              className={`text-3xl font-medium text-gray-900 md:text-6xl ${revealClass(
                 contactInView,
                 "left",
               )}`}
@@ -712,7 +692,7 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="bg-[#8FC3DC] p-4 text-xs leading-relaxed text-white md:text-sm">
+                  <div className="bg-[#8FC3DC] p-4 text-base leading-relaxed text-white md:text-base">
                     <div className="font-semibold">
                       {t("home.contact.cardTitle")}
                     </div>
@@ -769,7 +749,7 @@ function FormRow({ field, value, touched, hasError, onChange, onBlur }) {
         )}
 
         {touched && hasError && (
-          <p className="mt-1 text-xs text-red-500">{field.error}</p>
+          <p className="mt-1 text-[18px] text-red-500">{field.error}</p>
         )}
       </div>
     </>
@@ -778,11 +758,11 @@ function FormRow({ field, value, touched, hasError, onChange, onBlur }) {
 
 function ServiceItem({ text, icon, alt = "Service icon" }) {
   return (
-    <div className="flex items-start gap-6 transition-transform duration-300 hover:translate-x-1">
+    <div className="flex flex-col items-center gap-6 text-center transition-transform duration-300 hover:translate-x-1 md:flex-row md:items-start md:text-left">
       <img
         src={icon}
         alt={alt}
-        className="h-16 w-16 shrink-0 object-contain transition-transform duration-300 hover:scale-105"
+        className="h-16 w-16 shrink-0 object-contain  transition-transform duration-300 hover:scale-105"
       />
 
       <p className={`max-w-xl whitespace-pre-line text-gray-700 ${P_TEXT}`}>

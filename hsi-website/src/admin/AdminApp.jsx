@@ -9,6 +9,7 @@ import AdminProducts from "./pages/AdminProducts";
 import AdminNews from "./pages/AdminNews";
 import AdminEvents from "./pages/AdminEvents";
 import AdminSpareParts from "./pages/AdminSpareParts";
+import AdminPartners from "./pages/AdminPartners";
 
 export default function AdminApp() {
   return (
@@ -23,6 +24,7 @@ export default function AdminApp() {
           <Route path="news" element={<AdminNews />} />
           <Route path="events" element={<AdminEvents />} />
           <Route path="spareparts" element={<AdminSpareParts />} />
+          <Route path="partners" element={<AdminPartners />} />
         </Route>
       </Route>
     </Routes>

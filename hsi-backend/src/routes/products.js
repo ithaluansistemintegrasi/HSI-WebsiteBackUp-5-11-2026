@@ -87,6 +87,69 @@ function parseSpecifications(value) {
   }
 }
 
+function parseProductIds(value, fallbackIds = []) {
+  let raw = value;
+
+  if (typeof raw === "string") {
+    try {
+      raw = JSON.parse(raw);
+    } catch (_) {
+      raw = raw.split(",");
+    }
+  }
+
+  const ids = (Array.isArray(raw) ? raw : [])
+    .map((id) => normalizeText(id))
+    .filter(Boolean);
+
+  const fallback = (Array.isArray(fallbackIds) ? fallbackIds : [fallbackIds])
+    .map((id) => normalizeText(id))
+    .filter(Boolean);
+
+  return [...new Set([...ids, ...fallback])];
+}
+
+function serializeProductItem(productItem) {
+  const linkedProducts = Array.isArray(productItem.products)
+    ? productItem.products.map((link) => link.product).filter(Boolean)
+    : [];
+  const productIds = [
+    ...new Set([
+      ...(productItem.productId ? [productItem.productId] : []),
+      ...linkedProducts.map((product) => product.id),
+    ]),
+  ];
+
+  return {
+    ...productItem,
+    products: linkedProducts,
+    productIds,
+    specifications: parseSpecifications(productItem.specifications),
+  };
+}
+
+async function ensureProductsExist(productIds) {
+  const ids = [
+    ...new Set(productIds.map((id) => normalizeText(id)).filter(Boolean)),
+  ];
+  if (!ids.length) return [];
+
+  const products = await prisma.product.findMany({
+    where: { id: { in: ids } },
+    select: { id: true },
+  });
+  const foundIds = new Set(products.map((product) => product.id));
+  const missingIds = ids.filter((id) => !foundIds.has(id));
+
+  if (missingIds.length) {
+    const error = new Error("Product category tidak ditemukan");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  return ids;
+}
+
 router.get(
   "/admin/list",
   requireAuth,
@@ -98,12 +161,21 @@ router.get(
           items: {
             select: { id: true },
           },
+          itemLinks: {
+            select: { itemId: true },
+          },
         },
-        orderBy: [{ createdAt: "desc" }],
+        orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
       });
       const items = rawItems.map((item) => ({
         ...item,
-        _count: { items: item.items?.length || 0 },
+        _count: {
+          items: new Set([
+            ...(item.items || []).map((productItem) => productItem.id),
+            ...(item.itemLinks || []).map((link) => link.itemId),
+          ]).size,
+        },
+        itemLinks: undefined,
       }));
       res.json(items);
     } catch (e) {
@@ -128,16 +200,27 @@ router.get(
       }
 
       const items = await prisma.productItem.findMany({
-        where: { productId: req.params.productId },
+        where: {
+          OR: [
+            { productId: req.params.productId },
+            { products: { some: { productId: req.params.productId } } },
+          ],
+        },
+        include: {
+          products: {
+            include: {
+              product: {
+                select: { id: true, name: true, slug: true },
+              },
+            },
+          },
+        },
         orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
       });
 
       res.json({
         product,
-        items: items.map((productItem) => ({
-          ...productItem,
-          specifications: parseSpecifications(productItem.specifications),
-        })),
+        items: items.map(serializeProductItem),
       });
     } catch (e) {
       res.status(500).json({ message: e.message || "Server error" });
@@ -169,6 +252,7 @@ router.post(
           description,
           category: category || null,
           imageUrl: req.file ? `/uploads/products/${req.file.filename}` : null,
+          sortOrder: parseInteger(req.body?.sortOrder, 0),
           isPublished: parseBoolean(req.body?.isPublished, true),
         },
       });
@@ -215,6 +299,10 @@ router.post(
       const description = normalizeText(req.body?.description);
       const specifications = parseSpecifications(req.body?.specifications);
       const linkUrl = normalizeLinkUrl(req.body?.linkUrl);
+      const productIds = await ensureProductsExist(
+        parseProductIds(req.body?.productIds, [req.params.productId]),
+      );
+      const primaryProductId = productIds[0] || req.params.productId;
 
       if (!title) {
         if (itemImageFile?.path && fs.existsSync(itemImageFile.path))
@@ -226,7 +314,7 @@ router.post(
 
       const created = await prisma.productItem.create({
         data: {
-          productId: req.params.productId,
+          productId: primaryProductId,
           name: title,
           description,
           specifications: specifications.length
@@ -241,6 +329,11 @@ router.post(
           linkUrl,
           sortOrder: parseInteger(req.body?.sortOrder, 0),
           isPublished: parseBoolean(req.body?.isPublished, true),
+          products: {
+            create: productIds.map((productId) => ({
+              product: { connect: { id: productId } },
+            })),
+          },
         },
       });
 
@@ -250,7 +343,9 @@ router.post(
         fs.unlinkSync(itemImageFile.path);
       if (brandLogoFile?.path && fs.existsSync(brandLogoFile.path))
         fs.unlinkSync(brandLogoFile.path);
-      res.status(500).json({ message: e.message || "Server error" });
+      res
+        .status(e.statusCode || 500)
+        .json({ message: e.message || "Server error" });
     }
   },
 );
@@ -293,6 +388,7 @@ router.patch(
           imageUrl: req.file
             ? `/uploads/products/${req.file.filename}`
             : existing.imageUrl,
+          sortOrder: parseInteger(req.body?.sortOrder, existing.sortOrder),
           isPublished: parseBoolean(
             req.body?.isPublished,
             existing.isPublished,
@@ -343,6 +439,10 @@ router.patch(
       const description = normalizeText(req.body?.description);
       const specifications = parseSpecifications(req.body?.specifications);
       const linkUrl = normalizeLinkUrl(req.body?.linkUrl);
+      const productIds = await ensureProductsExist(
+        parseProductIds(req.body?.productIds, [existing.productId]),
+      );
+      const primaryProductId = productIds[0] || existing.productId;
 
       if (!title) {
         if (itemImageFile?.path && fs.existsSync(itemImageFile.path))
@@ -356,6 +456,7 @@ router.patch(
         where: { id: req.params.id },
         data: {
           name: title,
+          productId: primaryProductId,
           description,
           specifications: specifications.length
             ? JSON.stringify(specifications)
@@ -372,6 +473,12 @@ router.patch(
             req.body?.isPublished,
             existing.isPublished,
           ),
+          products: {
+            deleteMany: {},
+            create: productIds.map((productId) => ({
+              product: { connect: { id: productId } },
+            })),
+          },
         },
       });
 
@@ -387,7 +494,9 @@ router.patch(
         fs.unlinkSync(itemImageFile.path);
       if (brandLogoFile?.path && fs.existsSync(brandLogoFile.path))
         fs.unlinkSync(brandLogoFile.path);
-      res.status(500).json({ message: e.message || "Server error" });
+      res
+        .status(e.statusCode || 500)
+        .json({ message: e.message || "Server error" });
     }
   },
 );
@@ -453,7 +562,7 @@ router.get("/", async (req, res) => {
   try {
     const items = await prisma.product.findMany({
       where: { isPublished: true },
-      orderBy: [{ createdAt: "desc" }],
+      orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
     });
     res.json(items);
   } catch (e) {
@@ -468,24 +577,35 @@ router.get("/:slug", async (req, res) => {
         slug: req.params.slug,
         isPublished: true,
       },
-      include: {
-        items: {
-          where: { isPublished: true },
-          orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
-        },
-      },
     });
 
     if (!item) {
       return res.status(404).json({ message: "Product not found" });
     }
 
+    const productItems = await prisma.productItem.findMany({
+      where: {
+        isPublished: true,
+        OR: [
+          { productId: item.id },
+          { products: { some: { productId: item.id } } },
+        ],
+      },
+      include: {
+        products: {
+          include: {
+            product: {
+              select: { id: true, name: true, slug: true },
+            },
+          },
+        },
+      },
+      orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
+    });
+
     res.json({
       ...item,
-      items: (item.items || []).map((productItem) => ({
-        ...productItem,
-        specifications: parseSpecifications(productItem.specifications),
-      })),
+      items: productItems.map(serializeProductItem),
     });
   } catch (e) {
     res.status(500).json({ message: e.message || "Server error" });

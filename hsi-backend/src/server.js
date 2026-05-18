@@ -11,6 +11,7 @@ const productRoutes = require("./routes/products");
 const sparepartRoutes = require("./routes/spareparts");
 const newsRoutes = require("./routes/news");
 const uploadRoutes = require("./routes/uploads");
+const partnerRoutes = require("./routes/partners");
 
 const app = express();
 app.use(express.json());
@@ -43,6 +44,7 @@ app.use("/events", eventRoutes);
 app.use("/products", productRoutes);
 app.use("/spareparts", sparepartRoutes);
 app.use("/news", newsRoutes);
+app.use("/partners", partnerRoutes);
 app.use("/uploads-api", uploadRoutes);
 
 app.use((err, req, res, next) => {
@@ -56,10 +58,13 @@ app.use((err, req, res, next) => {
     return res.status(400).json({ message: err.message || "Upload gagal" });
   }
 
-  if (err.message === "Only jpg/png/webp allowed") {
+  if (
+    err.message === "Only jpg/png/webp allowed" ||
+    err.message === "Only jpg/png/webp/svg allowed"
+  ) {
     return res
       .status(400)
-      .json({ message: "Format file harus jpg, png, atau webp" });
+      .json({ message: "Format file harus jpg, png, webp, atau svg" });
   }
 
   return res.status(500).json({ message: err.message || "Server error" });

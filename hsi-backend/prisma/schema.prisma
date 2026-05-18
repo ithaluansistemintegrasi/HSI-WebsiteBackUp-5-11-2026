@@ -27,8 +27,7 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  news         News[]
-
+  news News[]
 }
 
 model Product {
@@ -38,30 +37,45 @@ model Product {
   description String   @db.LongText
   imageUrl    String?
   category    String?
+  sortOrder   Int      @default(0)
   isPublished Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  items       ProductItem[]
+  items     ProductItem[]
+  itemLinks ProductItemProduct[]
 }
 
 model ProductItem {
-  id          String   @id @default(cuid())
-  productId   String
-  name        String
-  description String   @db.LongText
-  specifications String? @db.LongText
-  imageUrl    String?
-  brandLogoUrl String?
-  linkUrl     String?  @db.VarChar(2048)
-  sortOrder   Int      @default(0)
-  isPublished Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String   @id @default(cuid())
+  productId      String
+  name           String
+  description    String   @db.LongText
+  specifications String?  @db.LongText
+  imageUrl       String?
+  brandLogoUrl   String?
+  linkUrl        String?  @db.VarChar(2048)
+  sortOrder      Int      @default(0)
+  isPublished    Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product  Product              @relation(fields: [productId], references: [id], onDelete: Cascade)
+  products ProductItemProduct[]
 
   @@index([productId, sortOrder])
+}
+
+model ProductItemProduct {
+  productId String
+  itemId    String
+  createdAt DateTime @default(now())
+
+  product Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  item    ProductItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@id([productId, itemId])
+  @@index([itemId])
 }
 
 model Banner {
@@ -75,53 +89,66 @@ model Banner {
   updatedAt DateTime @updatedAt
 }
 
+model Partner {
+  id          String   @id @default(cuid())
+  name        String
+  imageUrl    String
+  linkUrl     String?  @db.VarChar(2048)
+  sortOrder   Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isPublished, sortOrder])
+}
+
 model Event {
   id          String   @id @default(cuid())
   title       String
   date        DateTime // tanggal event (dipakai untuk filter kalender)
-  timeStart   String?  // optional: "09:00"
-  timeEnd     String?  // optional: "17:00"
+  timeStart   String? // optional: "09:00"
+  timeEnd     String? // optional: "17:00"
   location    String?
   description String?
   linkUrl     String?
   sortOrder   Int      @default(1)
   isPublished Boolean  @default(true)
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([date])
   @@index([isPublished])
 }
 
 model SparepartCategory {
-  id        Int        @id @default(autoincrement())
-  key       String     @unique
+  id        Int      @id @default(autoincrement())
+  key       String   @unique
   nameId    String
   nameEn    String?
-  sort      Int        @default(0)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  sort      Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   spareparts Sparepart[]
 }
 
 model Sparepart {
-  id          Int      @id @default(autoincrement())
-  categoryId  Int
-  titleId     String
-  titleEn     String?
-  descId      String?
-  descEn      String?
-  price       Int      @default(0)
+  id         Int     @id @default(autoincrement())
+  categoryId Int
+  titleId    String
+  titleEn    String?
+  descId     String?
+  descEn     String?
+  price      Int     @default(0)
 
   // simpan path file (contoh: "/uploads/spareparts/1700000-abc.jpg")
-  image       String?
+  image String?
 
-  sort        Int      @default(0)
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  sort      Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   category SparepartCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
@@ -129,33 +156,33 @@ model Sparepart {
 }
 
 model News {
-  id          Int      @id @default(autoincrement())
-  slug        String   @unique
+  id   Int    @id @default(autoincrement())
+  slug String @unique
 
-  titleId     String
-  titleEn     String?
-  excerptId   String?
-  excerptEn   String?
+  titleId   String
+  titleEn   String?
+  excerptId String?
+  excerptEn String?
 
-  contentId   String   @db.LongText
-  contentEn   String?  @db.LongText
+  contentId String  @db.LongText
+  contentEn String? @db.LongText
 
-  coverImage  String?  // path/url file cover
+  coverImage String? // path/url file cover
 
   // publikasi
   publishedAt DateTime?
-  isActive    Boolean  @default(true)
-  sort        Int      @default(0)
+  isActive    Boolean   @default(true)
+  sort        Int       @default(0)
 
   // ✅ pembuat
-  authorId    String?
-  author      User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  authorId String?
+  author   User?   @relation(fields: [authorId], references: [id], onDelete: SetNull)
 
   // (opsional) kalau suatu saat mau tampilkan nama penulis custom, tanpa tergantung user
   // authorName String?
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([isActive, publishedAt])
   @@index([authorId])

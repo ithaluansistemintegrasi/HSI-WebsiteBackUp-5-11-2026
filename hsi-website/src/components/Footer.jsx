@@ -36,7 +36,7 @@ export default function Footer() {
   };
 
   const IG_URL = "https://instagram.com/haluansistemintegrasi";
-  const LI_URL = "https://linkedin.com/company/yourcompany";
+  const LI_URL = "https://www.linkedin.com/company/pt-haluan-sistem-integrasi/";
   const WA_NUMBER = "6289508054752"; // format internasional tanpa +
   const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
@@ -66,10 +66,10 @@ export default function Footer() {
             />
 
             <div className="mt-4 text-sm leading-relaxed text-white/90 max-w-xs">
-              <div className="font-semibold text-white text-lg">
+              <div className="font-semibold text-white text-xl">
                 {t("footer.companyName")}
               </div>
-              <div>{t("footer.address")}</div>
+              <div className="text-base">{t("footer.address")}</div>
 
               {/* SOCIAL BUTTONS (DI BAWAH ALAMAT) */}
               <div className="mt-4 flex items-center gap-3">
@@ -145,11 +145,11 @@ export default function Footer() {
 
           {/* TENGAH */}
           <div className="md:justify-self-center">
-            <div className="font-semibold text-sm mb-3">
+            <div className="font-semibold text-lg mb-3">
               {t("footer.navTitle")}
             </div>
 
-            <ul className="space-y-2 text-sm text-white/90">
+            <ul className="space-y-2 text-base text-white/90">
               {NAV_LINKS.map((l) => (
                 <li key={l.key}>
                   <button
@@ -167,11 +167,11 @@ export default function Footer() {
           {/* KANAN */}
           <div className="md:justify-self-end w-full max-w-sm">
             <div className="rounded-md bg-white/15 p-5">
-              <div className="font-semibold text-sm">
+              <div className="font-semibold text-lg">
                 {t("footer.contactTitle")}
               </div>
 
-              <div className="mt-3 text-sm text-white/90 space-y-2">
+              <div className="mt-3 text-base text-white/90 space-y-2">
                 <div>
                   <span className="font-medium text-white">
                     {t("footer.whatsappLabel")}
@@ -209,7 +209,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/20">
-        <div className="mx-auto max-w-7xl px-6 py-4 text-center text-xs text-white/90">
+        <div className="mx-auto max-w-7xl px-6 py-4 text-center text-base text-white/90">
           {t("footer.copyright")}
         </div>
       </div>
