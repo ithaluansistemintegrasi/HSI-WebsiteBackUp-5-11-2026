@@ -462,7 +462,7 @@ export default function Home() {
 
           <div className="relative mx-auto h-full max-w-7xl px-6">
             <div className="flex h-full items-center justify-end">
-              <div className="max-w-xl text-center animate-fade-up-soft md:text-right">
+              <div className="max-w-3xl text-center animate-fade-up-soft md:text-right">
                 <h1 className="animate-slide-in-right text-5xl font-bold leading-tight text-white md:text-6xl">
                   {t("home.hero.title")}
                 </h1>
