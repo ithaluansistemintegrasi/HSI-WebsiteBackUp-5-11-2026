@@ -6,8 +6,10 @@ import heroBg from "../assets/hero-section/hero-image1.webp";
 import aboutImg from "../assets/about-section/about-image1.webp";
 import servicesImg from "../assets/services-section/services.jpg";
 import preownedImg from "../assets/preowned-section/preowned.jpg";
+import solidPharmaLogo from "../assets/preowned-section/solid_pharma.jpeg";
 
 import SeasonGreetingPopup from "../components/SeasonGreeting";
+import BottomContactPopup from "../components/BottomContactPopup";
 
 import HomeProductsSection from "../components/HomeProductsSection";
 import usePartnerBrands from "../hooks/usePartnerBrands";
@@ -415,6 +417,7 @@ export default function Home() {
   return (
     <>
       <SeasonGreetingPopup delay={600} autoCloseMs={0} />
+      <BottomContactPopup />
 
       {successOpen && (
         <div
@@ -599,7 +602,7 @@ export default function Home() {
 
             <div className="bg-[#8FC3DC] text-white">
               <div className="flex h-full items-center">
-                <div className="w-full px-6 py-16 md:py-24 lg:px-14">
+                <div className="ml-auto w-full px-4 py-16 sm:px-6 md:py-24 lg:max-w-[620px] lg:pl-8 lg:pr-6 xl:pr-8">
                   <h2
                     className={`text-center text-5xl font-medium md:text-6xl md:text-right ${revealClass(
                       preownedInView,
@@ -619,6 +622,36 @@ export default function Home() {
                   >
                     {t("home.preowned.desc")}
                   </p>
+
+                  <div
+                    className={`mt-8 rounded-2xl border border-white/15 bg-[#5d9fc7] p-5 text-left shadow-xl shadow-black/20 sm:p-7 ${revealClass(
+                      preownedInView,
+                      "right",
+                    )}`}
+                    style={delayStyle(250)}
+                  >
+                    <div className="text-sm font-bold uppercase tracking-wide text-[rgb(255 255 255)] sm:text-base">
+                      In Association With:
+                    </div>
+
+                    <div className="mt-4 flex min-h-20 items-center rounded-xl bg-white px-5 py-4 sm:px-8">
+                      <img
+                        src={solidPharmaLogo}
+                        alt="Solid Pharma Engineering & Services (HK) Ltd"
+                        className="h-auto w-full object-contain"
+                      />
+                    </div>
+
+                    <div className="mt-6 space-y-2 text-base text-white/80">
+                      <div className="text-lg font-bold text-white">
+                        Solid Pharma Engineering Services (HK)
+                      </div>
+                      <div>Unit 1301, 13th Floor</div>
+                      <div>Chung Nam Bldg.</div>
+                      <div>1 Lockhart Rd, Wanchai</div>
+                      <div>Hong Kong</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

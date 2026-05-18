@@ -42,6 +42,12 @@
   "common": {
     "back": "Back"
   },
+  "contactPopup": {
+    "title": "Ready to connect?",
+    "desc": "We are ready to help you find machinery and service solutions that match your business needs.",
+    "primary": "Contact Us Now",
+    "secondary": "Maybe Later"
+  },
   "home": {
     "hero": {
       "imageAlt": "HSI Hero",

@@ -42,6 +42,12 @@
   "common": {
     "back": "Kembali"
   },
+  "contactPopup": {
+    "title": "Siap berdiskusi?",
+    "desc": "Kami siap membantu mencarikan solusi mesin dan layanan yang sesuai dengan kebutuhan bisnis Anda.",
+    "primary": "Hubungi Kami Sekarang",
+    "secondary": "Nanti Saja"
+  },
   "home": {
     "hero": {
       "imageAlt": "HSI Hero",

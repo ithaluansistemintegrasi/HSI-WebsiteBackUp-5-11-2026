@@ -5,6 +5,7 @@ import AdminApp from "./admin/AdminApp";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 import Home from "./sections/Home";
 import News from "./sections/News";
@@ -66,6 +67,7 @@ function PublicLayout() {
       </main>
 
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
